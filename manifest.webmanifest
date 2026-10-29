@@ -1,0 +1,17 @@
+{
+  "name": "Cate Love Surprise",
+  "short_name": "Cate Surprise",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#170d25",
+  "theme_color": "#170d25",
+  "description": "A little romantic, playful surprise for Cate.",
+  "icons": [
+    {
+      "src": "/static/heart.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

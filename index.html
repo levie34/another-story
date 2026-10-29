@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#170d25">
+  <meta name="description" content="A romantic, playful and cinematic surprise made for Cate.">
+  <meta name="csrf-token" content="{{ csrf }}">
+  <title>Cate Love Surprise ✨</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="{{ url_for('static', filename='heart.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+<header class="topbar">
+  <a class="brand" href="#home"><span class="brand-mark">♥</span> Cate <i>Love</i> Surprise</a>
+  <nav><a href="#letter">Letter</a><a href="#hunt">Treasure hunt</a><a href="#date">Plan a date</a><button class="tiny-button" id="installBtn" hidden>Install app</button></nav>
+</header>
+<main id="home">
+  <section class="hero section-wrap">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="sparkle">✦</span> MADE WITH A LITTLE COURAGE & A LOT OF HEART</p>
+      <h1>A little world<br>made <span class="gradient-text">just for you.</span></h1>
+      <p class="hero-lede">Cate, this isn't a big speech or a promise you have to make. It's a tiny adventure: a letter, a few clues, a little laughter, and maybe a lovely day together.</p>
+      <div class="hero-actions"><button class="primary-button" id="beginBtn">Open your surprise <span>↗</span></button><a class="text-link" href="#no-pressure">No pressure, ever ↓</a></div>
+      <div class="hero-note"><span class="live-dot"></span> Your own little corner of the universe <span class="note-separator">✧</span> Take it at your pace</div>
+    </div>
+    <div class="hero-art" aria-label="Animated romantic night sky">
+      <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="moon">☾</div>
+      <div class="heart-core">♥</div><span class="float-heart h1">♥</span><span class="float-heart h2">♡</span><span class="float-heart h3">✦</span><span class="float-heart h4">✧</span>
+      <div class="art-caption"><span>01 / 10</span><span>A story that belongs to you</span></div>
+    </div>
+  </section>
+
+  <section class="section-wrap reveal-card" id="letter">
+    <div class="section-kicker">CHAPTER ONE <span>·</span> THE LETTER</div>
+    <div class="letter-layout">
+      <div><p class="eyebrow">A NOTE FROM THE HEART</p><h2>Some things are<br>better <span class="gradient-text">said softly.</span></h2><p class="muted">Tap the envelope. Let the little movie play. And remember: you don't owe anyone a particular answer.</p><button class="secondary-button" id="openLetter">Open the letter <span>♡</span></button></div>
+      <button class="envelope-button" id="envelope" aria-label="Open your love letter"><span class="envelope-glow"></span><span class="envelope-icon">✉</span><span class="envelope-label">FOR CATE, WITH CARE</span><span class="envelope-tap">TAP TO REVEAL</span></button>
+    </div>
+    <div id="letterReveal" class="letter-reveal" hidden>
+      <div class="letter-paper"><div class="letter-stamp">C ♥</div><p class="script">Dear Cate,</p>
+      <p>I made this little place because you bring a kind of brightness into ordinary moments. I like the way the smallest things can become memorable when the right person is around.</p>
+      <p>I'd love to spend time with you, laugh with you, and get to know you even more. No grand expectations, no pressure to say yes, and no hard feelings if your answer is no.</p>
+      <p>If you feel the same, let's make a simple memory together. If you don't, I will still respect you and be glad I was honest.</p>
+      <p class="script signoff">With a smile, always ♡</p>
+      <div class="letter-reactions"><button data-letter-reaction="This made me smile 💗">This made me smile</button><button data-letter-reaction="Aww, that's sweet 🥹">Aww, that's sweet</button><button data-letter-reaction="I'd like to talk about it">I'd like to talk about it</button></div>
+      <p class="microcopy">Your reaction is sent to the site owner so they can understand how the surprise landed.</p></div>
+    </div>
+  </section>
+
+  <section class="section-wrap" id="hunt">
+    <div class="section-heading"><div><div class="section-kicker">CHAPTER TWO <span>·</span> THE LITTLE QUEST</div><h2>Follow the <span class="gradient-text">heart-shaped clues.</span></h2></div><p class="muted">Three clues. One tiny treasure. No rushing.</p></div>
+    <div class="hunt-panel">
+      <div class="hunt-progress"><span id="huntStepLabel">CLUE 01 / 03</span><div class="progress-track"><span id="huntProgress"></span></div><span id="huntPercent">0%</span></div>
+      <div class="clue-symbol" id="clueSymbol">✧</div><p class="eyebrow" id="clueEyebrow">A SMALL MYSTERY</p><h3 id="clueTitle">Every story has a beginning…</h3><p id="clueText" class="clue-text">I'm full of tiny moments, messages, and things you might want to remember. What am I?</p>
+      <div class="clue-options" id="clueOptions"><button data-answer="memory">A memory box</button><button data-answer="mirror">A mirror</button><button data-answer="cloud">A cloud</button></div>
+      <p class="inline-feedback" id="clueFeedback" aria-live="polite"></p>
+      <button class="secondary-button" id="nextClue" hidden>Next clue →</button>
+    </div>
+  </section>
+
+  <section class="section-wrap" id="vibe">
+    <div class="section-heading"><div><div class="section-kicker">CHAPTER THREE <span>·</span> VIBE CHECK</div><h2>What's our <span class="gradient-text">kind of magic?</span></h2></div><p class="muted">Just for fun. This score is a game, not a verdict on anyone's feelings.</p></div>
+    <div class="quiz-grid">
+      <div class="quiz-intro"><span class="big-emoji">🪄</span><h3>Little things reveal a vibe.</h3><p class="muted">Choose the answers that feel most like you. There's no wrong combination.</p><div class="score-display"><span class="score-label">YOUR PLAYFUL VIBE SCORE</span><strong id="vibeScore">—<small>/100</small></strong><div class="score-track"><span id="scoreBar"></span></div><p id="scoreMessage">Your result will appear here.</p></div></div>
+      <div class="quiz-questions">
+        <div class="question"><p><span>01</span> The perfect free afternoon?</p><div class="choice-row"><button data-q="0" data-value="cozy">Cozy movie night 🍿</button><button data-q="0" data-value="outside">Go explore 🌿</button><button data-q="0" data-value="adventure">Random adventure 🎡</button></div></div>
+        <div class="question"><p><span>02</span> The best kind of message?</p><div class="choice-row"><button data-q="1" data-value="deep">A thoughtful paragraph 💌</button><button data-q="1" data-value="funny">A meme that gets me 😂</button><button data-q="1" data-value="voice">A voice note 🎧</button></div></div>
+        <div class="question"><p><span>03</span> Choose a date-night soundtrack.</p><div class="choice-row"><button data-q="2" data-value="soft">Soft and romantic 🌙</button><button data-q="2" data-value="upbeat">Happy and upbeat 💃</button><button data-q="2" data-value="acoustic">Acoustic and chill 🎸</button></div></div>
+        <div class="question"><p><span>04</span> When plans change, you…</p><div class="choice-row"><button data-q="3" data-value="adapt">Find another way ✨</button><button data-q="3" data-value="plan">Make a new plan 🗓️</button><button data-q="3" data-value="laugh">Laugh about it 😅</button></div></div>
+        <button class="primary-button" id="scoreVibe">Reveal my playful score ✨</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap" id="date">
+    <div class="section-heading"><div><div class="section-kicker">CHAPTER FOUR <span>·</span> THE DATE BLUEPRINT</div><h2>Let's plan something <span class="gradient-text">lovely.</span></h2></div><p class="muted">Pick what sounds fun. This is a suggestion box, not a booking.</p></div>
+    <form id="dateForm" class="planner-card">
+      <div class="planner-top"><div><span class="pill">YOUR DAY, YOUR WAY</span><h3>Dream up a tiny adventure.</h3></div><span class="planner-emoji">✦</span></div>
+      <div class="form-grid">
+        <label>Possible date<input type="date" id="preferredDate"></label>
+        <label>Budget (KES)<input type="number" min="0" max="10000000" step="50" id="budget" placeholder="e.g. 1500"></label>
+        <label class="full-width">Where would you feel happiest?<select id="locationPreference"><option value="Surprise me">Surprise me</option><option value="Somewhere outdoors">Somewhere outdoors 🌿</option><option value="A cozy indoor place">A cozy indoor place 🕯️</option><option value="A public place in town">A public place in town ☕</option><option value="Somewhere quiet and scenic">Somewhere quiet and scenic 🌅</option><option value="Let's decide together">Let's decide together 💬</option></select></label>
+      </div>
+      <p class="field-title">Choose any activities you like</p><div class="activity-grid">
+        <label class="activity-option"><input type="checkbox" name="activity" value="Movie night"><span>🍿<b>Movie night</b><small>Cozy and easy</small></span></label>
+        <label class="activity-option"><input type="checkbox" name="activity" value="Hiking"><span>🥾<b>Hiking</b><small>Fresh air & views</small></span></label>
+        <label class="activity-option"><input type="checkbox" name="activity" value="Bike riding"><span>🚲<b>Bike riding</b><small>Move and laugh</small></span></label>
+        <label class="activity-option"><input type="checkbox" name="activity" value="Nature walk"><span>🌳<b>Nature walk</b><small>Slow conversations</small></span></label>
+        <label class="activity-option"><input type="checkbox" name="activity" value="Coffee or snacks"><span>☕<b>Coffee / snacks</b><small>Simple and sweet</small></span></label>
+        <label class="activity-option"><input type="checkbox" name="activity" value="Games or arcade"><span>🎮<b>Games / arcade</b><small>A little competition</small></span></label>
+      </div>
+      <label class="full-width">Anything else you'd enjoy? <textarea id="dateNotes" rows="3" maxlength="1200" placeholder="A place, a food, a little idea…"></textarea></label>
+      <div class="planner-footer"><p class="microcopy">Only what you submit is saved. Your gallery and timeline stay on this device.</p><button class="primary-button" type="submit">Send my date ideas ♡</button></div><p class="inline-feedback" id="dateFeedback" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="section-wrap" id="music">
+    <div class="section-heading"><div><div class="section-kicker">CHAPTER FIVE <span>·</span> THE MUSIC ROOM</div><h2>A song for <span class="gradient-text">this little moment.</span></h2></div><p class="muted">Play an original ambient melody or dedicate a song that reminds you of someone.</p></div>
+    <div class="music-grid">
+      <div class="music-player"><div class="vinyl" id="vinyl"><span>♥</span></div><p class="eyebrow">ORIGINAL MINI MELODY</p><h3>Moonlight Postcard</h3><p class="muted">A tiny tune made from soft tones in your browser.</p><div class="music-controls"><button id="playMusic" class="play-button" aria-label="Play original melody">▶</button><div class="music-bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><span id="musicStatus">Ready when you are</span></div></div>
+      <form id="dedicationForm" class="dedication-card"><span class="pill">SONG DEDICATION</span><h3>Leave a melody behind.</h3><label>Song title<input id="songTitle" maxlength="160" placeholder="A song title"></label><label>Artist<input id="songArtist" maxlength="160" placeholder="Who sings it?"></label><label>Your dedication<textarea id="dedication" rows="3" maxlength="800" placeholder="This song reminds me of…"></textarea></label><button class="secondary-button" type="submit">Send dedication ♫</button><p id="musicFeedback" class="inline-feedback" aria-live="polite"></p></form>
+    </div>
+  </section>
+
+  <section class="section-wrap" id="messages">
+    <div class="section-heading"><div><div class="section-kicker">CHAPTER SIX <span>·</span> A PRIVATE LITTLE CHAT</div><h2>Words can find their <span class="gradient-text">own way.</span></h2></div><p class="muted">Send a private note to the site owner and check back for a reply on this same device.</p></div>
+    <div class="chat-card"><div class="chat-header"><div class="avatar">C<span>♥</span></div><div><b>A note between us</b><small><span class="live-dot"></span> Private conversation</small></div><button id="refreshMessages" class="icon-button" type="button" aria-label="Refresh messages">↻</button></div><div class="chat-messages" id="chatMessages"><div class="chat-empty">Your conversation will appear here. A little hello is a good start. 💌</div></div><form id="messageForm" class="chat-compose"><textarea id="messageBody" maxlength="1500" rows="2" placeholder="Write a kind little message…" required></textarea><button class="primary-button" type="submit">Send ↗</button></form><p class="microcopy">Conversation access is tied to this browser. Clearing its site data may lose access to the thread. Please don't share sensitive information.</p><p id="chatFeedback" class="inline-feedback" aria-live="polite"></p></div>
+  </section>
+
+  <section class="section-wrap" id="memories">
+    <div class="section-heading"><div><div class="section-kicker">CHAPTER SEVEN <span>·</span> THE MEMORY GARDEN</div><h2>Keep the little things <span class="gradient-text">glowing.</span></h2></div><p class="muted">Add photos and moments to a gallery that stays on this device.</p></div>
+    <div class="memory-toolbar"><label class="secondary-button upload-button">＋ Add a memory<input id="memoryUpload" type="file" accept="image/*" multiple hidden></label><button class="text-link" id="addMilestone" type="button">＋ Add timeline moment</button><span class="microcopy">Local-only · not uploaded to the server</span></div>
+    <div class="memory-gallery" id="memoryGallery"><div class="memory-placeholder"><span>✧</span><b>Your first memory goes here.</b><p>Choose a photo to start your own tiny gallery.</p></div></div>
+    <div class="timeline" id="timeline"><div class="timeline-item"><span class="timeline-dot"></span><small>THE BEGINNING</small><h3>The day this surprise was made</h3><p>A little courage became a little website.</p></div><div class="timeline-item"><span class="timeline-dot"></span><small>THE NEXT CHAPTER</small><h3>A memory waiting to happen</h3><p>Maybe a walk, a laugh, or a story you tell later.</p></div></div>
+  </section>
+
+  <section class="section-wrap no-pressure" id="no-pressure">
+    <div class="no-pressure-art">♡<span>✦</span></div><div class="no-pressure-copy"><div class="section-kicker">THE MOST IMPORTANT PART</div><h2>Your answer is <span class="gradient-text">always yours.</span></h2><p>You can say yes, maybe, or no. You can take your time. You can change your mind. This is only an invitation, and your comfort matters more than the answer.</p><div class="answer-buttons"><button class="primary-button" id="yesBtn">I'd love to ♡</button><button class="secondary-button" id="maybeBtn">Maybe — let's talk</button><button class="honest-no" id="noBtn">No, thank you</button></div><p id="answerFeedback" class="inline-feedback" aria-live="polite"></p><p class="microcopy">Your choice is sent to the site owner. Nothing here will try to change your mind.</p></div>
+  </section>
+  <footer class="footer"><a class="brand" href="#home"><span class="brand-mark">♥</span> Cate <i>Love</i> Surprise</a><p>Made with care, a little sparkle, and respect for every answer.</p><a href="/admin/login" class="admin-link">Site owner sign in</a><span>© <span id="year"></span> · A small universe of kindness</span></footer>
+</main>
+
+<div id="companion" class="companion"><button id="companionToggle" aria-label="Talk to your virtual companion"><span class="companion-face">૮ ˶ᵔ ᵕ ᵔ˶ ა</span><span class="companion-heart">♥</span></button><div id="companionBubble" class="companion-bubble" hidden><button id="closeCompanion" class="bubble-close" aria-label="Close">×</button><span class="pill">YOUR POCKET COMPANION</span><p id="companionText">Psst… tiny reminder: you can be brave and gentle at the same time. 💗</p><button id="companionNext" class="text-link">Tell me something sweet ↗</button></div></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="confetti" class="confetti-layer" aria-hidden="true"></div>
+<script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>
